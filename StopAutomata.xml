@@ -1,0 +1,53 @@
+<Automata >
+	<!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="Automata.xsd" -->
+	<AutomataName>HighlyAvailableScalableRDSAutomata</AutomataName>
+	<Description>ReadTheName</Description>		
+	<Action>Stop</Action>	
+	
+	<Resources>
+		<!--<SuspendProcesses>
+			<AutoScalingGroupName>AutomataAS</AutoScalingGroupName>
+			<ScalingProcesses>
+				<member>AutoscalingPolicyHigh</member>
+				<member>AutoscalingPolicyLow</member>
+			</ScalingProcesses>
+			<Region>US-EAST-1</Region>
+		</SuspendProcesses>
+		
+		-->
+		<UpdateAutoScalingGroupRequest>
+			<AutoScalingGroupName>AutomataAS</AutoScalingGroupName>
+			<LaunchConfigurationName>AutomataLCName</LaunchConfigurationName>
+			<MinSize>0</MinSize>
+			<MaxSize>0</MaxSize>
+			<Region>US-EAST-1</Region>
+		</UpdateAutoScalingGroupRequest>
+		
+		<!--<StopInstances>
+			<instancesSet>
+				<item>
+					<instanceId>i-c71b8aa6</instanceId>
+				</item>
+			</instancesSet>
+			<force>false</force>
+			<Region>US-EAST-1</Region>
+		</StopInstances>
+		
+		-->
+		<DeleteDBInstanceRequest>
+			<DBInstanceIdentifier>automatardsnew</DBInstanceIdentifier>
+			<SkipFinalSnapshot>false</SkipFinalSnapshot>
+			<FinalDBSnapshotIdentifier>automatardssnapshot</FinalDBSnapshotIdentifier>
+			<Region>US-EAST-1</Region>
+		</DeleteDBInstanceRequest>
+		
+		<DeleteDBInstanceRequest>
+			<DBInstanceIdentifier>AutomataRDSReplicanew</DBInstanceIdentifier>
+			<SkipFinalSnapshot>true</SkipFinalSnapshot>
+			<Region>US-EAST-1</Region>
+		</DeleteDBInstanceRequest>
+		
+	</Resources>
+	<Outputs></Outputs>
+</Automata>

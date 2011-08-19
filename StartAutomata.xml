@@ -1,0 +1,45 @@
+<Automata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="Automata.xsd">
+
+	<AutomataName>HighlyAvailableScalableRDSAutomata</AutomataName>
+	<Description>ReadTheName</Description>
+	<Action>Resume</Action>
+
+	<Resources>
+		<UpdateAutoScalingGroupRequest>
+			<AutoScalingGroupName>AutomataAS</AutoScalingGroupName>
+			<LaunchConfigurationName>AutomataLCName</LaunchConfigurationName>
+			<MinSize>1</MinSize>
+			<MaxSize>1</MaxSize>
+			<Region>US-EAST-1</Region>
+		</UpdateAutoScalingGroupRequest>
+
+		<!--
+			<StartInstances> <instanceSet> <item> <instanceId></instanceId>
+			</item> </instanceSet> <Region>US-EAST-1</Region> </StartInstances>
+		-->
+		<RestoreDBInstanceFromDBSnapshot>
+			<DBInstanceIdentifier>AutomataRDSnew</DBInstanceIdentifier>
+			<DBSnapshotIdentifier>automatardssnapshot</DBSnapshotIdentifier>
+			<DBInstanceClass>db.m1.small</DBInstanceClass>
+			<Port>3306</Port>
+			<!--<AvailabilityZone></AvailabilityZone>
+			-->
+			<MultiAZ>true</MultiAZ>
+			<AutoMinorVersionUpgrade>true</AutoMinorVersionUpgrade>
+			<Region>US-EAST-1</Region>
+		</RestoreDBInstanceFromDBSnapshot>
+
+		<CreateDBInstanceReadReplica>
+			<DBInstanceIdentifier>AutomataRDSReplicanew</DBInstanceIdentifier>
+			<SourceDBInstanceIdentifier>AutomataRDSnew</SourceDBInstanceIdentifier>
+			<DBInstanceClass>db.m1.small</DBInstanceClass>
+			<AvailabilityZone>us-east-1d</AvailabilityZone>
+			<Port>3306</Port>
+			<AutoMinorVersionUpgrade>true</AutoMinorVersionUpgrade>
+			<Region>US-EAST-1</Region>
+		</CreateDBInstanceReadReplica>
+
+	</Resources>
+	<Outputs></Outputs>
+</Automata>

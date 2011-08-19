@@ -1,0 +1,82 @@
+<Automata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="Automata.xsd">
+
+	<AutomataName>HighlyAvailableScalableRDSAutomata</AutomataName>
+	<Description>ReadTheName</Description>
+	<Action>Terminate</Action>
+
+	<Resources>
+		<UpdateAutoScalingGroupRequest>
+			<AutoScalingGroupName>AutomataAS</AutoScalingGroupName>
+			<LaunchConfigurationName>AutomataLCName</LaunchConfigurationName>
+			<MinSize>0</MinSize>
+			<MaxSize>0</MaxSize>
+			<Region>US-EAST-1</Region>
+		</UpdateAutoScalingGroupRequest>
+
+		<DeleteAutoScalingGroupRequest>
+			<AutoScalingGroupName>AutomataAS</AutoScalingGroupName>
+			<ForceDelete>true</ForceDelete>
+			<Region>US-EAST-1</Region>
+		</DeleteAutoScalingGroupRequest>
+
+		<DeleteLaunchConfigurationRequest>
+			<LaunchConfigurationName>AutomataLCName</LaunchConfigurationName>
+			<Region>US-EAST-1</Region>
+		</DeleteLaunchConfigurationRequest>
+
+		<DeleteLoadBalancerRequest>
+			<LoadBalancerName>AutomataLB</LoadBalancerName>
+			<Region>US-EAST-1</Region>
+		</DeleteLoadBalancerRequest>
+
+		<!--<ResumeProcesses>
+			<AutoScalingGroupName></AutoScalingGroupName>
+			<ScalingProcesses>
+				<member></member>
+				<member></member>
+			</ScalingProcesses>
+			<Region></Region>
+		</ResumeProcesses>
+
+		--><!--<TerminateInstancesRequest>
+			<instanceSet>
+				<item>
+					<instanceId></instanceId>
+				</item>
+			</instanceSet>
+			<Region>US-EAST-1</Region>
+		</TerminateInstancesRequest>
+
+		-->
+		
+		<DeleteDBInstanceRequest>
+			<DBInstanceIdentifier>AutomataRDSnew</DBInstanceIdentifier>
+			<SkipFinalSnapshot>true</SkipFinalSnapshot>
+			<Region>US-EAST-1</Region>
+		</DeleteDBInstanceRequest>
+		
+		<DeleteDBInstanceRequest>
+			<DBInstanceIdentifier>AutomataRDSReplicanew</DBInstanceIdentifier>
+			<SkipFinalSnapshot>true</SkipFinalSnapshot>
+			<Region>US-EAST-1</Region>
+		</DeleteDBInstanceRequest>
+
+		<DeleteKeyPairRequest>
+			<keyName>AutomataKP</keyName>
+			<Region>US-EAST-1</Region>
+		</DeleteKeyPairRequest>
+
+		<DeleteSecurityGroupRequest>
+			<groupName>AutomataSG</groupName>
+			<Region>US-EAST-1</Region>
+		</DeleteSecurityGroupRequest>
+
+		<DeleteDBSecurityGroupRequest>
+			<DBSecurityGroupName>AutomataDBSecurityGroup</DBSecurityGroupName>
+			<Region>US-EAST-1</Region>
+		</DeleteDBSecurityGroupRequest>
+
+	</Resources>
+	<Outputs></Outputs>
+</Automata>

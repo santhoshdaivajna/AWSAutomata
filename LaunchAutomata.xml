@@ -1,0 +1,182 @@
+<Automata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="Automata.xsd">
+	
+	<AutomataName>HighlyAvailableScalableRDSAutomata</AutomataName>
+	<Description>ReadTheName</Description>		
+	<Action>Create</Action>	
+	
+	<Resources>
+ 
+		<CreateSecurityGroup>
+			<SecurityGroupName>AutomataSG</SecurityGroupName>
+			<SecurityGroupDesc>AutomataSG Description</SecurityGroupDesc>
+			<Region>US-EAST-1</Region>
+ 		</CreateSecurityGroup>
+		
+		<AddSecurityGroupRule>
+			<SecurityGroupName>AutomataSG</SecurityGroupName>
+			<FromPort>22</FromPort>
+			<ToPort>22</ToPort>
+			<Protocol>tcp</Protocol>
+			<CidrIP>0.0.0.0/0</CidrIP>
+			<Region>US-EAST-1</Region>
+		</AddSecurityGroupRule>
+		
+		<CreateKeyPair>
+			<KeyPairName>AutomataKP</KeyPairName>  
+			<KeyPairDesc>AutomataKP</KeyPairDesc> 
+			<Region>US-EAST-1</Region>
+ 		</CreateKeyPair>
+	
+		<!-- <Ec2Instance>
+			<AMI>ami-76f0061f</AMI>
+			<InstanceType>t1.micro</InstanceType>
+			<Region>US-EAST-1</Region>
+			<AvailabilityZone>us-east-1a</AvailabilityZone>
+			<SecurityGroupName>AutomataSG</SecurityGroupName>
+			<KeyPair>AutomataKP</KeyPair>
+			<UserData> </UserData>
+			<MinInstances>1</MinInstances>
+			<MaxInstances>1</MaxInstances>
+			<Monitoring>false</Monitoring>
+			<LBName>AutomataLB</LBName>
+		</Ec2Instance> -->
+		
+		<LoadBalancer> 
+			<LoadBalancerName>AutomataLB</LoadBalancerName>
+			<AvailabilityZones>us-east-1a</AvailabilityZones>
+			<AvailabilityZones>us-east-1b</AvailabilityZones>
+			<Region>US-EAST-1</Region>
+			<Listener>
+				<Protocol>HTTP</Protocol>
+				<LoadBalancerPort>80</LoadBalancerPort>
+				<InstancePort>80</InstancePort>
+				<SSLCertificateId></SSLCertificateId>
+			</Listener>
+		</LoadBalancer>
+		
+		<CreateAppCookieStickinessPolicy>
+			<CookieName>AppCookie</CookieName>
+			<LoadBalancerName>AutomataLB</LoadBalancerName>
+			<PolicyName>AppCookieStickinessPolicy</PolicyName>
+			<Region>US-EAST-1</Region>
+		</CreateAppCookieStickinessPolicy>
+		
+		<CreateLBCookieStickinessPolicy>
+			<LoadBalancerName>AutomataLB</LoadBalancerName>
+			<PolicyName>LBCookieStickinessPolicy</PolicyName>
+			<CookieExpirationPeriod>300</CookieExpirationPeriod>
+			<Region>US-EAST-1</Region>
+		</CreateLBCookieStickinessPolicy>
+		
+		<CreateLaunchConfiguration> 
+			<LaunchConfigurationName>AutomataLCName</LaunchConfigurationName>
+			<ImageId>ami-76f0061f</ImageId>
+			<KeyName>AutomataKP</KeyName>
+			<SecurityGroups><member>AutomataSG</member></SecurityGroups>
+			<InstanceType>t1.micro</InstanceType>
+			<InstanceMonitoring><Enabled>false</Enabled></InstanceMonitoring>
+			<Region>US-EAST-1</Region>
+		</CreateLaunchConfiguration>
+		
+		<CreateAutoScalingGroup>   
+			<AutoScalingGroupName>AutomataAS</AutoScalingGroupName>
+			<LaunchConfigurationName>AutomataLCName</LaunchConfigurationName>
+			<MinSize>1</MinSize>
+			<MaxSize>1</MaxSize>
+			<DesiredCapacity>1</DesiredCapacity>
+			<DefaultCooldown>600</DefaultCooldown>
+			<AvailabilityZones>
+				<member>us-east-1a</member>
+				<member>us-east-1b</member>
+			</AvailabilityZones>
+			  <LoadBalancerNames><member>AutomataLB</member></LoadBalancerNames>
+			<!-- <HealthCheckType></HealthCheckType>
+			<HealthCheckGracePeriod></HealthCheckGracePeriod>
+			<PlacementGroup></PlacementGroup>
+			<VPCZoneIdentifier></VPCZoneIdentifier>  -->
+			<Region>US-EAST-1</Region>
+		</CreateAutoScalingGroup>
+		
+		<PutScalingPolicy>
+			<AutoScalingGroupName>AutomataAS</AutoScalingGroupName>
+			<PolicyName>AutoscalingPolicyHigh</PolicyName>
+			<ScalingAdjustment>1</ScalingAdjustment>
+			<AdjustmentType>ChangeInCapacity</AdjustmentType>
+			<Cooldown>240</Cooldown>
+			<Region>US-EAST-1</Region>
+		</PutScalingPolicy>
+		
+		<PutScalingPolicy>
+			<AutoScalingGroupName>AutomataAS</AutoScalingGroupName>
+			<PolicyName>AutoscalingPolicyLow</PolicyName>
+			<ScalingAdjustment>-1</ScalingAdjustment>
+			<AdjustmentType>ChangeInCapacity</AdjustmentType>
+			<Cooldown>240</Cooldown>
+			<Region>US-EAST-1</Region>
+		</PutScalingPolicy>
+
+		<PutMetricAlarm>
+			<AlarmName>CPUThresholdHigh</AlarmName>
+			<AlarmDescription>CPU threshold</AlarmDescription>
+			<ActionsEnabled>true</ActionsEnabled>
+			<!-- <AlarmActions><member>autoscalingpolicyhigh</member></AlarmActions>
+			<InsufficientDataActions><member>AutoscalingPolicyLow</member></InsufficientDataActions>  -->
+			<MetricName>CPUUtilization</MetricName>
+			<Namespace>AWS/EC2</Namespace>
+			<Statistic>Average</Statistic>
+			<!-- <Dimensions><member><Name>AutoScalingGroupName</Name><Value>AutomataAS</Value></member></Dimensions> -->
+			<Period>60</Period>
+			<Unit>Percent</Unit>
+			<EvaluationPeriods>3</EvaluationPeriods>
+			<Threshold>75</Threshold>
+			<ComparisonOperator>GreaterThanThreshold</ComparisonOperator>
+			<Region>US-EAST-1</Region>
+		</PutMetricAlarm> 
+
+		<CreateDBSecurityGroup>
+			<DBSecurityGroupName>AutomataDBSecurityGroup</DBSecurityGroupName>
+			<DBSecurityGroupDescription>AutomataDBSecurityGroup</DBSecurityGroupDescription>
+			<Region>US-EAST-1</Region>
+		</CreateDBSecurityGroup>
+		
+		<AuthorizeDBSecurityGroupIngress>
+			<DBSecurityGroupName>AutomataDBSecurityGroup</DBSecurityGroupName>
+			<CidrIp>0.0.0.0/0</CidrIp>
+			<Region>US-EAST-1</Region>
+		</AuthorizeDBSecurityGroupIngress>
+			
+		<LaunchRDSInstance>   
+			<DBName>AutomataRDSnew</DBName>
+			<DBInstanceIdentifier>AutomataRDSnew</DBInstanceIdentifier>
+			<AllocatedStorage>5</AllocatedStorage>
+			<DBInstanceClass>db.m1.small</DBInstanceClass>
+			<Engine>mysql</Engine>
+			<MasterUsername>root</MasterUsername>
+			<MasterUserPassword>root</MasterUserPassword>
+			<DBSecurityGroups>AutomataDBSecurityGroup</DBSecurityGroups>
+			<AvailabilityZone>us-east-1a</AvailabilityZone>
+			<PreferredMaintenanceWindow></PreferredMaintenanceWindow>
+			<DBParameterGroupName>default.mysql5.5</DBParameterGroupName>
+			<BackupRetentionPeriod>1</BackupRetentionPeriod>
+			<PreferredBackupWindow></PreferredBackupWindow>
+			<Port>3306</Port>
+			<MultiAZ>false</MultiAZ>
+			<EngineVersion>5.5.8</EngineVersion>
+			<AutoMinorVersionUpgrade>true</AutoMinorVersionUpgrade>
+			<Region>US-EAST-1</Region>
+		</LaunchRDSInstance>
+		
+		<CreateDBInstanceReadReplica> 
+			<DBInstanceIdentifier>AutomataRDSReplicanew</DBInstanceIdentifier>
+			<SourceDBInstanceIdentifier>AutomataRDSnew</SourceDBInstanceIdentifier>
+			<DBInstanceClass>db.m1.small</DBInstanceClass>
+			<AvailabilityZone>us-east-1d</AvailabilityZone>
+			<Port>3306</Port>
+			<AutoMinorVersionUpgrade>true</AutoMinorVersionUpgrade>
+			<Region>US-EAST-1</Region>
+		</CreateDBInstanceReadReplica>
+
+	</Resources>
+	<Outputs></Outputs>
+</Automata>

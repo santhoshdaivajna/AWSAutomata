@@ -1,0 +1,77 @@
+<Automata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="Automata.xsd">
+
+	<AutomataName>HighlyAvailableScalableRDSAutomata</AutomataName>
+	<Description>ReadTheName</Description>
+	<Action>Describe</Action>
+	
+	<Resources>
+		
+		<DescribeKeyPairs>
+			<keySet>
+				<item><keyName>AutomataKP</keyName></item>
+			</keySet>
+			<Region>US-EAST-1</Region>
+		</DescribeKeyPairs>
+		
+		<DescribeSecurityGroups>
+			<securityGroupSet>
+				<item>
+					<groupName>AutomataSG</groupName>
+				</item>
+			</securityGroupSet>
+			<Region>US-EAST-1</Region>
+		
+		</DescribeSecurityGroups>
+		
+		<DescribeInstances>
+			<instancesSet>
+			<item>
+				<instanceId>i-4ff3b12e</instanceId>
+			</item>
+			</instancesSet>
+			<Region>US-EAST-1</Region>
+		</DescribeInstances>
+		
+		<DescribeLoadBalancers>
+			<LoadBalancerNames>
+				<member>AutomataLB</member>
+			</LoadBalancerNames>
+			<Region>US-EAST-1</Region>
+		</DescribeLoadBalancers>
+		
+		<DescribeLaunchConfigurations>
+			<LaunchConfigurationNames>
+				<member>AutomataLCName</member>
+			</LaunchConfigurationNames>
+			<Region>US-EAST-1</Region>
+		</DescribeLaunchConfigurations>
+		
+		<DescribeAutoScalingGroups>
+			<AutoScalingGroupNames>
+				<member>AutomataAS</member>
+			</AutoScalingGroupNames>
+			<Region>US-EAST-1</Region>
+		</DescribeAutoScalingGroups>
+		
+		
+		<DescribeDBSecurityGroups>
+			<DBSecurityGroupName>AutomataDBSecurityGroup</DBSecurityGroupName>
+			<Region>US-EAST-1</Region>
+		</DescribeDBSecurityGroups>
+		
+		<DescribeDBInstances>
+			<DBInstanceIdentifier>AutomataRDSnew</DBInstanceIdentifier>
+			<Region>US-EAST-1</Region>
+		</DescribeDBInstances>
+		
+		<DescribeDBInstances>
+			<DBInstanceIdentifier>AutomataRDSReplicanew</DBInstanceIdentifier>
+			<Region>US-EAST-1</Region>
+		</DescribeDBInstances>
+		
+	
+	</Resources>
+	<Outputs></Outputs>
+	<Status></Status>
+</Automata>

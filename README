@@ -1,0 +1,18 @@
+Copyright (c) 2009-2011 8KMiles Software Services Ltd.
+
+== What is AWSAutomata ?
+ 
+AWSAutomata
+AWSAutomata gives devops an easy way to create a collection of related AWS resources and provision them in an orderly and predictable fashion. It is very much similar to Amazon Cloudformation but with a very broad scope. XML Templates are used to create, stop, start,  describe and terminate AWS resources. Currently only a subset of the AWS resources (EC2 Instances, Elastic Load Balancers, Auto Scaling, RDS, EC2 Security Groups, RDS Security Groups, Cloudwatch Alarms) are supported.
+
+AWSAutomata provides a declarative way to create AWS resources. It's still in a very nascent stage. We are visualizing it as a tool which could help setup cluster configurations on AWS easily. 
+
+== What is this component
+
+The AWSAutomata repo contains a java library for setting up load balanced, auto scaled application in the Amazon Cloud declaratively.
+This library provides a set of classes that ultimately call the core Amazon Web Services to setup the architecture specified in the input.
+ 
+== License
+ 
+Automata uses the Apache 2 license.  See LICENSE for details.
+

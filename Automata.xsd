@@ -1,0 +1,2300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element type="Automata" name="Automata" />
+	<xs:complexType name="AddSecurityGroupRuleType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="SecurityGroupName" />
+			<xs:element type="xs:int" name="FromPort" />
+			<xs:element type="xs:int" name="ToPort" />
+			<xs:element type="xs:string" name="Protocol" />
+			<xs:element type="xs:string" name="CidrIP" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AddSecurityGroupRuleResponse">
+		<xs:sequence>
+			<xs:element type="AddSecurityGroupRuleType" name="Request" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateSecurityGroupType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="SecurityGroupName" />
+			<xs:element type="xs:string" name="SecurityGroupDesc" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateSecurityGroupResponse">
+		<xs:sequence>
+			<xs:element type="CreateSecurityGroupType" name="Request" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateKeyPairType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="KeyPairName" />
+			<xs:element type="xs:string" name="KeyPairDesc" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateKeyPairResponse">
+		<xs:sequence>
+			<xs:element type="CreateKeyPairType" name="Request" />
+			<xs:element type="xs:string" name="KeyFingerprint" />
+			<xs:element type="xs:string" name="KeyMaterial" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Ec2InstanceType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="AMI" />
+			<xs:element type="xs:string" name="InstanceType" />
+			<xs:element type="xs:string" name="Region" />
+			<xs:element type="xs:string" name="AvailabilityZone" />
+			<xs:element type="xs:string" name="SecurityGroupName"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="xs:string" name="KeyPair" minOccurs="0"/>
+			<xs:element type="xs:string" name="UserData" minOccurs="0"/>
+			<xs:element type="xs:int" name="MinInstances" />
+			<xs:element type="xs:int" name="MaxInstances" />
+			<xs:element type="xs:boolean" name="Monitoring" minOccurs="0"/>
+			<xs:element type="xs:string" name="LBName" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Ec2InstanceResponse">
+		<xs:sequence>
+			<xs:element type="xs:string" name="ImageId" minOccurs="0"/>
+			<xs:element type="xs:string" name="InstanceId" />
+			<xs:element type="xs:string" name="InstanceType" />
+			<xs:element type="xs:string" name="KeyName" minOccurs="0"/>
+			<xs:element type="xs:string" name="State" />
+			<xs:element type="xs:string" name="LaunchTime" />
+			<xs:element type="xs:string" name="Monitoring" minOccurs="0"/>
+			<xs:element type="xs:string" name="AvailabilityZone" />
+			<xs:element type="xs:string" name="PublicDnsName" minOccurs="0"/>
+			<xs:element type="xs:string" name="PrivateDnsName" minOccurs="0"/>
+			<xs:element type="xs:string" name="PublicIpAddress" minOccurs="0"/>
+			<xs:element type="xs:string" name="PrivateIpAddress" minOccurs="0"/>
+			<xs:element type="xs:string" name="Architecture" minOccurs="0"/>
+			<xs:element type="xs:string" name="KernelId" minOccurs="0"/>
+			<xs:element type="xs:string" name="RootDeviceName" minOccurs="0"/>
+			<xs:element type="xs:string" name="RootDeviceType" minOccurs="0"/>
+			<xs:element type="xs:string" name="VirtualizationType" minOccurs="0"/>
+			<xs:element type="xs:string" name="LoadBalancerName" minOccurs="0"/>
+			<xs:element type="xs:string" name="Status" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+		<xs:complexType name="LoadBalancerType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="LoadBalancerName" />
+			<xs:element type="xs:string" name="AvailabilityZones"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="xs:string" name="Region" />
+			<xs:element type="ListenerType" name="Listener" maxOccurs="unbounded"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LoadBalancerResponse">
+		<xs:sequence>
+			<xs:element type="LoadBalancerType" name="Request" />
+			<xs:element type="xs:string" name="LoadBalancerDNSName" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateAppCookieStickinessPolicyType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="CookieName" />
+			<xs:element type="xs:string" name="LoadBalancerName" />
+			<xs:element type="xs:string" name="PolicyName" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateAppCookieStickinessPolicyResponse">
+		<xs:sequence>
+			<xs:element type="CreateAppCookieStickinessPolicyType" name="Request" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateLBCookieStickinessPolicyType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="LoadBalancerName" />
+			<xs:element type="xs:string" name="PolicyName" />
+			<xs:element type="xs:string" name="CookieExpirationPeriod" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateLBCookieStickinessPolicyResponse">
+		<xs:sequence>
+			<xs:element type="CreateLBCookieStickinessPolicyType" name="Request" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- AutoScaling starts here -->
+
+	<xs:complexType name="AvailabilityZonesType">
+		<xs:sequence>
+			<xs:element name="member" type="XmlStringMaxLen255"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LoadBalancerNamesType">
+		<xs:sequence>
+			<xs:element name="member" type="XmlStringMaxLen255"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="BlockDeviceMappingsType">
+		<xs:sequence>
+			<xs:element name="member" type="BlockDeviceMappingType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="BlockDeviceMappingType">
+		<xs:sequence>
+			<xs:element name="VirtualName" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="DeviceName" type="XmlStringMaxLen255" />
+			<xs:element name="Ebs" type="EbsType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EbsType">
+		<xs:sequence>
+			<xs:element name="SnapshotId" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="VolumeSize" type="BlockDeviceEbsVolumeSize"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="BlockDeviceEbsVolumeSize">
+		<xs:restriction base="xs:int"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ASGResourceName">
+		<xs:restriction base="xs:string">
+			<!--
+				<xs:pattern
+				value="[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*"/>
+			-->
+			<xs:minLength value="1" />
+			<xs:maxLength value="1600" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="SecurityGroups">
+		<xs:sequence>
+			<xs:element name="member" type="XmlString" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="XmlString">
+		<xs:restriction base="xs:string">
+			<!--
+				<xs:pattern
+				value="[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*"/>
+			-->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="XmlStringMaxLen255">
+		<xs:restriction base="xs:string">
+			<!--
+				<xs:pattern
+				value="[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*"/>
+			-->
+			<xs:minLength value="1" />
+			<xs:maxLength value="255" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="CreateLaunchConfigurationType">
+		<xs:sequence>
+			<xs:element name="LaunchConfigurationName" type="XmlStringMaxLen255" />
+			<xs:element name="ImageId" type="XmlStringMaxLen255" />
+			<xs:element name="KeyName" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="SecurityGroups" type="SecurityGroups"
+				minOccurs="0" />
+			<xs:element name="UserData" type="XmlStringUserData"
+				minOccurs="0" />
+			<xs:element name="InstanceType" type="XmlStringMaxLen255" />
+			<xs:element name="KernelId" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="RamdiskId" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="BlockDeviceMappings" type="BlockDeviceMappingsType"
+				minOccurs="0" />
+			<xs:element name="InstanceMonitoring" type="InstanceMonitoringType"
+				minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateLaunchConfigurationResponse">
+		<xs:sequence>
+			<xs:element name="Request" type="CreateLaunchConfigurationType" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstanceMonitoringType">
+		<xs:sequence>
+			<xs:element name="Enabled" type="xs:boolean" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="XmlStringMaxLen32">
+		<xs:restriction base="xs:string">
+			<!--
+				<xs:pattern
+				value="[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*"/>
+			-->
+			<xs:minLength value="1" />
+			<xs:maxLength value="32" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="XmlStringUserData">
+		<xs:restriction base="xs:string">
+			<!--
+				<xs:pattern
+				value="[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*"/>
+			-->
+			<xs:minLength value="0" />
+			<xs:maxLength value="21847" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="PutScalingPolicyType">
+		<xs:sequence>
+			<xs:element name="AutoScalingGroupName" type="ASGResourceName" />
+			<xs:element name="PolicyName" type="XmlStringMaxLen255" />
+			<xs:element name="ScalingAdjustment" type="xs:int" />
+			<xs:element name="AdjustmentType" type="XmlStringMaxLen255" />
+			<xs:element name="Cooldown" type="xs:int" minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PutScalingPolicyResponse">
+		<xs:sequence>
+			<xs:element name="Request" type="PutScalingPolicyType" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateAutoScalingGroupType">
+		<xs:sequence>
+			<xs:element name="AutoScalingGroupName" type="XmlStringMaxLen255" />
+			<xs:element name="LaunchConfigurationName" type="ASGResourceName" />
+			<xs:element name="MinSize" type="xs:int" />
+			<xs:element name="MaxSize" type="xs:int" />
+			<xs:element name="DesiredCapacity" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="DefaultCooldown" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="AvailabilityZones" type="AvailabilityZonesType" />
+			<xs:element name="LoadBalancerNames" type="LoadBalancerNamesType"
+				minOccurs="0" />
+			<xs:element name="HealthCheckType" type="XmlStringMaxLen32"
+				minOccurs="0" />
+			<xs:element name="HealthCheckGracePeriod" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="PlacementGroup" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="VPCZoneIdentifier" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateAutoScalingGroupResponse">
+		<xs:sequence>
+			<xs:element name="Request" type="CreateAutoScalingGroupType" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- AutoScaling ends here -->
+
+	<xs:complexType name="AuthorizeDBSecurityGroupIngressType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="DBSecurityGroupName" />
+			<xs:element type="xs:string" name="Ec2SecurityGroupName"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="Ec2SecurityGroupOwnerId"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="CidrIp" minOccurs="0" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AuthorizeDBSecurityGroupIngressResponse">
+		<xs:sequence>
+			<xs:element type="AuthorizeDBSecurityGroupIngressType" name="Request" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateDBSecurityGroupType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="DBSecurityGroupName" />
+			<xs:element type="xs:string" name="DBSecurityGroupDescription" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateDBSecurityGroupResponse">
+		<xs:sequence>
+			<xs:element type="CreateDBSecurityGroupType" name="Request" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="CreateDBInstanceType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="DBName" minOccurs="0" />
+			<xs:element type="xs:string" name="DBInstanceIdentifier" />
+			<xs:element type="xs:string" name="AllocatedStorage" />
+			<xs:element type="xs:string" name="DBInstanceClass" />
+			<xs:element type="xs:string" name="Engine" />
+			<xs:element type="xs:string" name="MasterUsername" />
+			<xs:element type="xs:string" name="MasterUserPassword" />
+			<xs:element type="DBSecurityGroupNameList" name="DBSecurityGroups"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="AvailabilityZone"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="PreferredMaintenanceWindow"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="DBParameterGroupName"
+				minOccurs="0" />
+			<xs:element type="xs:integer" name="BackupRetentionPeriod"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="PreferredBackupWindow"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="Port" minOccurs="0" />
+			<xs:element type="xs:string" name="MultiAZ" minOccurs="0" />
+			<xs:element type="xs:string" name="EngineVersion"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="AutoMinorVersionUpgrade"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateDBInstanceResponse">
+	<xs:sequence>
+		<xs:element name="Request" type="CreateDBInstanceType" />
+		<xs:element name="CreateDBInstanceResult" type="CreateDBInstanceResultType" />
+		<xs:element name="ResponseMetadata" type="ResponseMetadataType"
+			minOccurs="1" />
+		<xs:element name="Status" type="xs:string" />
+		<xs:element name="Region" type="xs:string" />
+	</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateDBInstanceResultType">
+		<xs:sequence>
+			<xs:element name="DBInstance" type="DBInstanceType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateDBSnapshotType">
+		<xs:sequence>
+			<xs:element name="DBSnapshotIdentifier" type="xs:string" />
+			<xs:element name="DBInstanceIdentifier" type="xs:string" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateDBSnapshotDetailsType">
+		<xs:sequence>
+			<xs:element name="DBSnapshot" type="DBSnapshotType" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBSnapshotType">
+		<xs:sequence>
+			<xs:element name="DBSnapshotIdentifier" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="DBInstanceIdentifier" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="SnapshotCreateTime" type="xs:dateTime"
+				minOccurs="0" />
+			<xs:element name="Engine" type="xs:string" minOccurs="0" />
+			<xs:element name="AllocatedStorage" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="Status" type="xs:string" minOccurs="0" />
+			<xs:element name="Port" type="xs:int" minOccurs="0" />
+			<xs:element name="AvailabilityZone" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="InstanceCreateTime" type="xs:dateTime"
+				minOccurs="0" />
+			<xs:element name="MasterUsername" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="EngineVersion" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="ComparisonOperator">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GreaterThanOrEqualToThreshold" />
+			<xs:enumeration value="GreaterThanThreshold" />
+			<xs:enumeration value="LessThanThreshold" />
+			<xs:enumeration value="LessThanOrEqualToThreshold" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Period">
+		<xs:restriction base="xs:int"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="Dimensions">
+		<xs:sequence>
+			<xs:element name="member" type="Dimension" minOccurs="0"
+				maxOccurs="10" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Dimension">
+		<xs:sequence>
+			<xs:element name="Name" type="DimensionName" />
+			<xs:element name="Value" type="DimensionValue" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="DimensionName">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="255" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DimensionValue">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="255" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EvaluationPeriods">
+		<xs:restriction base="xs:int"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="StandardUnit">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Seconds" />
+			<xs:enumeration value="Microseconds" />
+			<xs:enumeration value="Milliseconds" />
+			<xs:enumeration value="Bytes" />
+			<xs:enumeration value="Kilobytes" />
+			<xs:enumeration value="Megabytes" />
+			<xs:enumeration value="Gigabytes" />
+			<xs:enumeration value="Terabytes" />
+			<xs:enumeration value="Bits" />
+			<xs:enumeration value="Kilobits" />
+			<xs:enumeration value="Megabits" />
+			<xs:enumeration value="Gigabits" />
+			<xs:enumeration value="Terabits" />
+			<xs:enumeration value="Percent" />
+			<xs:enumeration value="Count" />
+			<xs:enumeration value="Bytes/Second" />
+			<xs:enumeration value="Kilobytes/Second" />
+			<xs:enumeration value="Megabytes/Second" />
+			<xs:enumeration value="Gigabytes/Second" />
+			<xs:enumeration value="Terabytes/Second" />
+			<xs:enumeration value="Bits/Second" />
+			<xs:enumeration value="Kilobits/Second" />
+			<xs:enumeration value="Megabits/Second" />
+			<xs:enumeration value="Gigabits/Second" />
+			<xs:enumeration value="Terabits/Second" />
+			<xs:enumeration value="Count/Second" />
+			<xs:enumeration value="None" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="Statistics">
+		<xs:sequence>
+			<xs:element name="member" type="Statistic" minOccurs="1"
+				maxOccurs="5" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="Statistic">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SampleCount" />
+			<xs:enumeration value="Average" />
+			<xs:enumeration value="Sum" />
+			<xs:enumeration value="Minimum" />
+			<xs:enumeration value="Maximum" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Namespace">
+		<xs:restriction base="xs:string">
+			<!-- <xs:pattern value="[^:].*" /> -->
+			<xs:minLength value="1" />
+			<xs:maxLength value="255" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AlarmName">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="255" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AlarmDescription">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0" />
+			<xs:maxLength value="255" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ResourceList">
+		<xs:sequence>
+			<xs:element name="member" type="ResourceName" minOccurs="0"
+				maxOccurs="5" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="ResourceName">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="1024" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetricName">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="255" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="GetMetricStatisticsType">
+		<xs:sequence>
+			<xs:element name="Namespace" type="Namespace" />
+			<xs:element name="MetricName" type="MetricName" />
+			<xs:element name="Dimensions" type="Dimensions" minOccurs="0" />
+			<xs:element name="StartTime" type="xs:dateTime" />
+			<xs:element name="EndTime" type="xs:dateTime" />
+			<xs:element name="Period" type="Period" />
+			<xs:element name="Statistics" type="Statistics" />
+			<xs:element name="Unit" type="StandardUnit" minOccurs="0" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="GetMetricStatisticsDetailsType">
+		<xs:sequence>
+			<xs:element name="Namespace" type="Namespace" />
+			<xs:element name="MetricName" type="MetricName" />
+			<xs:element name="Dimensions" type="Dimensions" minOccurs="0" />
+			<xs:element name="StartTime" type="xs:dateTime" />
+			<xs:element name="EndTime" type="xs:dateTime" />
+			<xs:element name="Period" type="Period" />
+			<xs:element name="Statistics" type="Statistics" />
+			<xs:element name="Unit" type="StandardUnit" minOccurs="0" />
+			<xs:element type="xs:string" name="Region" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PutMetricAlarmType">
+		<xs:sequence>
+			<xs:element name="AlarmName" type="AlarmName" />
+			<xs:element name="AlarmDescription" type="AlarmDescription"
+				minOccurs="0" />
+			<xs:element name="ActionsEnabled" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="OKActions" type="ResourceList"
+				minOccurs="0" />
+			<xs:element name="AlarmActions" type="ResourceList"
+				minOccurs="0" />
+			<xs:element name="InsufficientDataActions" type="ResourceList"
+				minOccurs="0" />
+			<xs:element name="MetricName" type="MetricName" />
+			<xs:element name="Namespace" type="Namespace" />
+			<xs:element name="Statistic" type="Statistic" />
+			<xs:element name="Dimensions" type="Dimensions" minOccurs="0" />
+			<xs:element name="Period" type="Period" />
+			<xs:element name="Unit" type="StandardUnit" minOccurs="0" />
+			<xs:element name="EvaluationPeriods" type="EvaluationPeriods" />
+			<xs:element name="Threshold" type="xs:double" />
+			<xs:element name="ComparisonOperator" type="ComparisonOperator" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PutMetricAlarmDetailsType">
+		<xs:sequence>
+			<xs:element name="AlarmName" type="AlarmName" />
+			<xs:element name="AlarmDescription" type="AlarmDescription"
+				minOccurs="0" />
+			<xs:element name="ActionsEnabled" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="OKActions" type="ResourceList"
+				minOccurs="0" />
+			<xs:element name="AlarmActions" type="ResourceList"
+				minOccurs="0" />
+			<xs:element name="InsufficientDataActions" type="ResourceList"
+				minOccurs="0" />
+			<xs:element name="MetricName" type="MetricName" />
+			<xs:element name="Namespace" type="Namespace" />
+			<xs:element name="Statistic" type="Statistic" />
+			<xs:element name="Dimensions" type="Dimensions" minOccurs="0" />
+			<xs:element name="Period" type="Period" />
+			<xs:element name="Unit" type="StandardUnit" minOccurs="0" />
+			<xs:element name="EvaluationPeriods" type="EvaluationPeriods" />
+			<xs:element name="Threshold" type="xs:double" />
+			<xs:element name="ComparisonOperator" type="ComparisonOperator" />
+			<xs:element type="xs:string" name="Region" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- RDS Starts -->
+
+	<xs:complexType name="EndpointType">
+		<xs:sequence>
+			<xs:element name="Address" type="xs:string" minOccurs="0" />
+			<xs:element name="Port" type="xs:int" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBSecurityGroupMembershipListType">
+		<xs:sequence>
+			<xs:element name="DBSecurityGroup" type="DBSecurityGroupMembershipType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBSecurityGroupMembershipType">
+		<xs:sequence>
+			<xs:element name="DBSecurityGroupName" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="Status" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBParameterGroupStatusListType">
+		<xs:sequence>
+			<xs:element name="DBParameterGroup" type="DBParameterGroupStatusType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBParameterGroupStatusType">
+		<xs:sequence>
+			<xs:element name="DBParameterGroupName" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="ParameterApplyStatus" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PendingModifiedValuesType">
+		<xs:sequence>
+			<xs:element name="DBInstanceClass" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="AllocatedStorage" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="MasterUserPassword" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="Port" type="xs:int" minOccurs="0" />
+			<xs:element name="BackupRetentionPeriod" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="MultiAZ" type="xs:boolean" minOccurs="0" />
+			<xs:element name="EngineVersion" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReadReplicaDBInstanceIdentifierListType">
+		<xs:sequence>
+			<xs:element name="ReadReplicaDBInstanceIdentifier" type="xs:string"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateDBInstanceReadReplicaType">
+		<xs:sequence>
+			<xs:element name="DBInstanceIdentifier" type="xs:string" />
+			<xs:element name="SourceDBInstanceIdentifier" type="xs:string" />
+			<xs:element name="DBInstanceClass" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="AvailabilityZone" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="Port" type="xs:int" minOccurs="0" />
+			<xs:element name="AutoMinorVersionUpgrade" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreateDBInstanceReadReplicaResponse">
+		<xs:sequence>
+			<xs:element name="DBInstance" type="DBInstanceType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBInstanceType">
+		<xs:sequence>
+			<xs:element name="DBInstanceIdentifier" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="DBInstanceClass" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="Engine" type="xs:string" minOccurs="0" />
+			<xs:element name="DBInstanceStatus" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="MasterUsername" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="DBName" type="xs:string" minOccurs="0" />
+			<xs:element name="Endpoint" type="EndpointType" minOccurs="0" />
+			<xs:element name="AllocatedStorage" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="InstanceCreateTime" type="xs:dateTime"
+				minOccurs="0" />
+			<xs:element name="PreferredBackupWindow" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="BackupRetentionPeriod" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="DBSecurityGroups" type="DBSecurityGroupMembershipListType"
+				minOccurs="0" />
+			<xs:element name="DBParameterGroups" type="DBParameterGroupStatusListType"
+				minOccurs="0" />
+			<xs:element name="AvailabilityZone" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="PreferredMaintenanceWindow" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="PendingModifiedValues" type="PendingModifiedValuesType"
+				minOccurs="0" />
+			<xs:element name="LatestRestorableTime" type="xs:dateTime"
+				minOccurs="0" />
+			<xs:element name="MultiAZ" type="xs:boolean" minOccurs="0" />
+			<xs:element name="EngineVersion" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="AutoMinorVersionUpgrade" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="ReadReplicaSourceDBInstanceIdentifier"
+				type="xs:string" minOccurs="0" />
+			<xs:element name="ReadReplicaDBInstanceIdentifiers" type="ReadReplicaDBInstanceIdentifierListType"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<xs:complexType name="FilterType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="valueSet" type="ValueSetType" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FilterSetType">
+		<xs:sequence>
+			<xs:element name="item" type="FilterType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ValueType">
+		<xs:sequence>
+			<xs:element name="value" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValueSetType">
+		<xs:sequence>
+			<xs:element name="item" type="ValueType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ResourceTagSetItemType">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string" />
+			<xs:element name="value" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResourceTagSetType">
+		<xs:sequence>
+			<xs:element name="item" type="ResourceTagSetItemType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstanceLicenseResponseType">
+		<xs:sequence>
+			<xs:element name="pool" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstanceBlockDeviceMappingResponseType">
+		<xs:sequence>
+			<xs:element name="item"
+				type="InstanceBlockDeviceMappingResponseItemType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InstanceBlockDeviceMappingResponseItemType">
+		<xs:sequence>
+			<xs:element name="deviceName" type="xs:string" />
+			<xs:choice>
+				<xs:element name="ebs"
+					type="EbsInstanceBlockDeviceMappingResponseType" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EbsInstanceBlockDeviceMappingResponseType">
+		<xs:sequence>
+			<xs:element name="volumeId" type="xs:string" />
+			<xs:element name="status" type="xs:string" />
+			<xs:element name="attachTime" type="xs:dateTime" />
+			<xs:element name="deleteOnTermination" type="xs:boolean"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="StateReasonType">
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" />
+			<xs:element name="message" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstanceStateType">
+		<xs:sequence>
+			<xs:element name="code" type="xs:int" />
+			<xs:element name="name" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ProductCodesSetType">
+		<xs:sequence>
+			<xs:element name="item" type="ProductCodesSetItemType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProductCodesSetItemType">
+		<xs:sequence>
+			<xs:element name="productCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PlacementResponseType">
+		<xs:sequence>
+			<xs:element name="availabilityZone" type="xs:string" />
+			<xs:element name="groupName" type="xs:string" minOccurs="0" />
+			<xs:element name="tenancy" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstanceMonitoringStateType">
+		<xs:sequence>
+			<xs:element name="state" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RunningInstancesItemType">
+		<xs:sequence>
+			<xs:element name="instanceId" type="xs:string" />
+			<xs:element name="imageId" type="xs:string" minOccurs="0" />
+			<xs:element name="instanceState" type="InstanceStateType" />
+			<xs:element name="privateDnsName" type="xs:string" />
+			<xs:element name="dnsName" type="xs:string" minOccurs="0" />
+			<xs:element name="reason" type="xs:string" minOccurs="0" />
+			<xs:element name="keyName" type="xs:string" minOccurs="0" />
+			<xs:element name="amiLaunchIndex" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="productCodes" type="ProductCodesSetType"
+				minOccurs="0" />
+			<xs:element name="instanceType" type="xs:string" />
+			<xs:element name="launchTime" type="xs:dateTime" />
+			<xs:element name="placement" type="PlacementResponseType"
+				minOccurs="0" />
+			<xs:element name="kernelId" type="xs:string" minOccurs="0" />
+			<xs:element name="ramdiskId" type="xs:string" minOccurs="0" />
+			<xs:element name="platform" type="xs:string" minOccurs="0" />
+			<xs:element name="monitoring" type="InstanceMonitoringStateType"
+				minOccurs="0" />
+			<xs:element name="subnetId" type="xs:string" minOccurs="0" />
+			<xs:element name="vpcId" type="xs:string" minOccurs="0" />
+			<xs:element name="privateIpAddress" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="ipAddress" type="xs:string" minOccurs="0" />
+			<xs:element name="sourceDestCheck" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="groupSet" type="GroupSetType" />
+			<xs:element name="stateReason" type="StateReasonType"
+				minOccurs="0" />
+			<xs:element name="architecture" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="rootDeviceType" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="rootDeviceName" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="blockDeviceMapping" type="InstanceBlockDeviceMappingResponseType"
+				minOccurs="0" />
+			<xs:element name="instanceLifecycle" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="spotInstanceRequestId" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="license" type="InstanceLicenseResponseType"
+				minOccurs="0" />
+			<xs:element name="virtualizationType" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="clientToken" type="xs:string" minOccurs="0" />
+			<xs:element name="tagSet" type="ResourceTagSetType"
+				minOccurs="0" />
+			<xs:element name="hypervisor" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="GroupSetType">
+		<xs:sequence>
+			<xs:element name="item" type="GroupItemType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="GroupItemType">
+		<xs:sequence>
+			<xs:element name="groupId" type="xs:string" minOccurs="0" />
+			<xs:element name="groupName" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<xs:complexType name="ReservationSetType">
+		<xs:sequence>
+			<xs:element name="item" type="ReservationInfoType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReservationInfoType">
+		<xs:sequence>
+			<xs:element name="reservationId" type="xs:string" />
+			<xs:element name="ownerId" type="xs:string" />
+			<xs:element name="groupSet" type="GroupSetType" />
+			<xs:element name="instancesSet" type="RunningInstancesSetType" />
+			<xs:element name="requesterId" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RunningInstancesSetType">
+		<xs:sequence>
+			<xs:element name="item" type="RunningInstancesItemType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<!-- Update Auto scaling group -->
+
+	<xs:complexType name="UpdateAutoScalingGroupType">
+		<xs:sequence>
+			<xs:element name="AutoScalingGroupName" type="ResourceName" />
+			<xs:element name="LaunchConfigurationName" type="ResourceName"
+				minOccurs="0" />
+			<xs:element name="MinSize" type="xs:int" minOccurs="0" />
+			<xs:element name="MaxSize" type="xs:int" minOccurs="0" />
+			<xs:element name="DesiredCapacity" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="DefaultCooldown" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="AvailabilityZones" type="AvailabilityZonesType"
+				minOccurs="0" />
+			<xs:element name="HealthCheckType" type="XmlStringMaxLen32"
+				minOccurs="0" />
+			<xs:element name="HealthCheckGracePeriod" type="xs:int"
+				minOccurs="0" />
+			<xs:element name="PlacementGroup" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="VPCZoneIdentifier" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="Region" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UpdateAutoScalingGroupResponseType">
+		<xs:sequence>
+			<xs:element name="Request" type="UpdateAutoScalingGroupType" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- End Update Auto scaling group -->
+
+	<!-- Delete Auto scaling group -->
+
+	<xs:complexType name="DeleteAutoScalingGroupType">
+		<xs:sequence>
+			<xs:element name="AutoScalingGroupName" type="ResourceName" />
+			<xs:element name="ForceDelete" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DeleteAutoScalingGroupResponseType">
+		<xs:sequence>
+			<xs:element name="Request" type="DeleteAutoScalingGroupType" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- End Delete Auto scaling group -->
+
+	<!-- Delete Launch Configuration -->
+
+	<xs:complexType name="DeleteLaunchConfigurationType">
+		<xs:sequence>
+			<xs:element name="LaunchConfigurationName" type="ResourceName" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DeleteLaunchConfigurationResponseType">
+		<xs:sequence>
+			<xs:element name="Request" type="DeleteLaunchConfigurationType" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- End Delete launch Configuration -->
+
+	<!-- Terminate EC2 Instances -->
+
+	<xs:complexType name="TerminateInstancesType">
+		<xs:sequence>
+			<xs:element name="instancesSet" type="InstanceIdSetType" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TerminateInstancesResponseType">
+		<xs:sequence>
+			<xs:element name="requestId" type="xs:string" />
+			<xs:element name="instancesSet" type="InstanceStateChangeSetType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstanceIdSetType">
+		<xs:sequence>
+			<xs:element name="item" type="InstanceIdType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstanceIdType">
+		<xs:sequence>
+			<xs:element name="instanceId" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstanceStateChangeSetType">
+		<xs:sequence>
+			<xs:element name="item" type="InstanceStateChangeType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstanceStateChangeType">
+		<xs:sequence>
+			<xs:element name="instanceId" type="xs:string" />
+			<xs:element name="currentState" type="InstanceStateType" />
+			<xs:element name="previousState" type="InstanceStateType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- End Terminate EC2 Instances -->
+
+	<xs:complexType name="DeleteDBInstanceType">
+		<xs:sequence>
+			<xs:element name="DBInstanceIdentifier" type="xs:string" />
+			<xs:element name="SkipFinalSnapshot" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="FinalDBSnapshotIdentifier" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DeleteDBInstanceResultType">
+		<xs:sequence>
+			<xs:element name="DBInstance" type="DBInstanceType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DeleteDBInstanceResponseType">
+		<xs:sequence>
+			<xs:element name="Request" type="DeleteDBInstanceType" />
+			<xs:element name="DeleteDBInstanceResult" type="DeleteDBInstanceResultType" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<!-- end snapshot rds and terminate -->
+
+	<!-- Delete Load Balancer -->
+
+
+	<xs:complexType name="DeleteLoadBalancerType">
+		<xs:sequence>
+			<xs:element name="LoadBalancerName" type="xs:string" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DeleteLoadBalancerResultType">
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DeleteLoadBalancerResponseType">
+		<xs:sequence>
+			<xs:element name="DeleteLoadBalancerResult" type="DeleteLoadBalancerResultType" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element name="Request" type="DeleteLoadBalancerType" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<!-- end Delete Load Balancer-->
+
+	<!-- snapshot rds and terminate -->
+
+	<!-- Delete Keypair -->
+
+	<xs:complexType name="DeleteKeyPairType">
+		<xs:sequence>
+			<xs:element name="keyName" type="xs:string" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DeleteKeyPairResponseType">
+		<xs:sequence>
+			<xs:element name="Request" type="DeleteKeyPairType" />
+			<xs:element name="return" type="xs:boolean" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- End Delete Keypair -->
+
+	<!--  Delete Security Group -->
+
+	<xs:complexType name="DeleteSecurityGroupType">
+		<xs:sequence>
+			<xs:element name="groupName" type="xs:string" />
+			<xs:element name="Region" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DeleteSecurityGroupResponseType">
+		<xs:sequence>
+			<xs:element type="DeleteSecurityGroupType" name="Request" />
+			<xs:element name="requestId" type="xs:string" />
+			<xs:element name="return" type="xs:boolean" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!--  Delete Security Group -->
+
+	<!--  Delete DB Security Group -->
+	<xs:complexType name="DeleteDBSecurityGroupType">
+		<xs:sequence>
+			<xs:element name="DBSecurityGroupName" type="xs:string" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeleteDBSecurityGroupResponseType">
+		<xs:sequence>
+			<xs:element name="Request" type="DeleteDBSecurityGroupType" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!--  Delete DB Security Group -->
+
+	<!--  Stop EC2 Instance -->
+	<xs:complexType name="StopInstancesType">
+		<xs:sequence>
+			<xs:element name="instancesSet" type="InstanceIdSetType" />
+			<xs:element name="force" type="xs:boolean" minOccurs="0" />
+			<xs:element type="xs:string" name="Region" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StopInstancesResponseType">
+		<xs:sequence>
+			<xs:element name="requestId" type="xs:string" />
+			<xs:element name="instancesSet" type="InstanceStateChangeSetType" />
+			<xs:element type="xs:string" name="Region" minOccurs="1" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Stop EC2 Instance End -->
+	<!-- Suspend Auto scaling processes -->
+	<xs:complexType name="SuspendProcessesType">
+		<xs:sequence>
+			<xs:element name="AutoScalingGroupName" type="ResourceName" />
+			<xs:element name="ScalingProcesses" type="ProcessNames"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="Region" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SuspendProcessesResponseType">
+		<xs:sequence>
+			<xs:element name="Request" type="SuspendProcessesType" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element type="xs:string" name="Status" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ProcessNames">
+		<xs:sequence>
+			<xs:element name="member" type="XmlStringMaxLen255"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Suspend Auto scaling processes -->
+	<!--  Start EC2 Instance -->
+
+	<xs:complexType name="StartInstancesType">
+		<xs:sequence>
+			<xs:element name="instancesSet" type="InstanceIdSetType" />
+			<xs:element type="xs:string" name="Region" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="StartInstancesResponseType">
+		<xs:sequence>
+			<xs:element name="requestId" type="xs:string" />
+			<xs:element name="instancesSet" type="InstanceStateChangeSetType" />
+			<xs:element type="xs:string" name="Region" minOccurs="1" />
+			<xs:element type="xs:string" name="Status" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!--  End Start EC2 Instance -->
+	<!-- Resume Auto scaling processes -->
+	<xs:complexType name="ResumeProcessesType">
+		<xs:sequence>
+			<xs:element name="AutoScalingGroupName" type="ResourceName" />
+			<xs:element name="ScalingProcesses" type="ProcessNames"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="Region" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ResumeProcessesResponseType">
+		<xs:sequence>
+			<xs:element name="Request" type="ResumeProcessesType" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element type="xs:string" name="Status" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- End Resume Auto scaling processes -->
+
+	<!-- Restore RDS from Snapshot -->
+	<xs:complexType name="RestoreDBInstanceFromDBSnapshotType">
+		<xs:sequence>
+			<xs:element name="DBInstanceIdentifier" type="xs:string" />
+			<xs:element name="DBSnapshotIdentifier" type="xs:string" />
+			<xs:element name="DBInstanceClass" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="Port" type="xs:int" minOccurs="0" />
+			<xs:element name="AvailabilityZone" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="MultiAZ" type="xs:boolean" minOccurs="0" />
+			<xs:element name="AutoMinorVersionUpgrade" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element type="xs:string" name="Region" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RestoreDBInstanceFromDBSnapshotResultType">
+		<xs:sequence>
+			<xs:element name="DBInstance" type="DBInstanceType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RestoreDBInstanceFromDBSnapshotResponseType">
+		<xs:sequence>
+			<xs:element name="Request" type="RestoreDBInstanceFromDBSnapshotType" />
+			<xs:element name="RestoreDBInstanceFromDBSnapshotResult"
+				type="RestoreDBInstanceFromDBSnapshotResultType" minOccurs="1" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element type="xs:string" name="Status" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<!-- End of Restore RDS from Snapshot -->
+
+	<xs:complexType name="ResponseMetadataType">
+		<xs:sequence>
+			<xs:element name="RequestId" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Describe Instances -->
+
+	<xs:complexType name="DescribeInstancesType">
+		<xs:sequence>
+			<xs:element name="instancesSet" type="DescribeInstancesInfoType" />
+			<xs:element name="filterSet" type="FilterSetType"
+				minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeInstancesInfoType">
+		<xs:sequence>
+			<xs:element name="item" type="DescribeInstancesItemType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeInstancesItemType">
+		<xs:sequence>
+			<xs:element name="instanceId" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeInstancesResponseType">
+		<xs:sequence>
+			<xs:element name="requestId" type="xs:string" />
+			<xs:element name="reservationSet" type="ReservationSetType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<!-- End Describe Instances -->
+	<!-- Describe KeyPairs -->
+
+
+	<xs:complexType name="DescribeKeyPairsType">
+		<xs:sequence>
+			<xs:element name="keySet" type="DescribeKeyPairsInfoType" />
+			<xs:element name="filterSet" type="FilterSetType"
+				minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeKeyPairsInfoType">
+		<xs:sequence>
+			<xs:element name="item" type="DescribeKeyPairsItemType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeKeyPairsItemType">
+		<xs:sequence>
+			<xs:element name="keyName" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeKeyPairsResponseType">
+		<xs:sequence>
+			<xs:element name="requestId" type="xs:string" />
+			<xs:element name="keySet" type="DescribeKeyPairsResponseInfoType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeKeyPairsResponseInfoType">
+		<xs:sequence>
+			<xs:element name="item" type="DescribeKeyPairsResponseItemType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeKeyPairsResponseItemType">
+		<xs:sequence>
+			<xs:element name="keyName" type="xs:string" />
+			<xs:element name="keyFingerprint" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- End Describe KeyPairs -->
+	<!-- Describe SecurityGroups -->
+
+
+	<xs:complexType name="DescribeSecurityGroupsType">
+		<xs:sequence>
+			<xs:element name="securityGroupSet" type="DescribeSecurityGroupsSetType" />
+			<xs:element name="securityGroupIdSet" type="DescribeSecurityGroupsIdSetType"
+				minOccurs="0" />
+			<xs:element name="filterSet" type="FilterSetType"
+				minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeSecurityGroupsSetType">
+		<xs:sequence>
+			<xs:element name="item" type="DescribeSecurityGroupsSetItemType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeSecurityGroupsSetItemType">
+		<xs:sequence>
+			<xs:element name="groupName" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeSecurityGroupsIdSetType">
+		<xs:sequence>
+			<xs:element name="item" type="DescribeSecurityGroupsIdSetItemType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeSecurityGroupsIdSetItemType">
+		<xs:sequence>
+			<xs:element name="groupId" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeSecurityGroupsResponseType">
+		<xs:sequence>
+			<xs:element name="Request" type="DescribeSecurityGroupsType" />
+			<xs:element name="requestId" type="xs:string" />
+			<xs:element name="securityGroupInfo" type="SecurityGroupSetType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SecurityGroupSetType">
+		<xs:sequence>
+			<xs:element name="item" type="SecurityGroupItemType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SecurityGroupItemType">
+		<xs:sequence>
+			<xs:element name="ownerId" type="xs:string" />
+			<xs:element name="groupId" type="xs:string" />
+			<xs:element name="groupName" type="xs:string" />
+			<xs:element name="groupDescription" type="xs:string" />
+			<xs:element name="vpcId" type="xs:string" minOccurs="0" />
+			<xs:element name="ipPermissions" type="IpPermissionSetType" />
+			<xs:element name="ipPermissionsEgress" type="IpPermissionSetType"
+				minOccurs="0" />
+			<xs:element name="tagSet" type="ResourceTagSetType"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="IpPermissionSetType">
+		<xs:sequence>
+			<xs:element name="item" type="IpPermissionType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IpPermissionType">
+		<xs:sequence>
+			<xs:element name="ipProtocol" type="xs:string" />
+			<xs:element name="fromPort" type="xs:int" minOccurs="0" />
+			<xs:element name="toPort" type="xs:int" minOccurs="0" />
+			<xs:element name="groups" type="UserIdGroupPairSetType" />
+			<xs:element name="ipRanges" type="IpRangeSetType" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IpRangeSetType">
+		<xs:sequence>
+			<xs:element name="item" type="IpRangeItemType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IpRangeItemType">
+		<xs:sequence>
+			<xs:element name="cidrIp" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserIdGroupPairSetType">
+		<xs:sequence>
+			<xs:element name="item" type="UserIdGroupPairType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserIdGroupPairType">
+		<xs:sequence>
+			<xs:element name="userId" type="xs:string" minOccurs="0" />
+			<xs:element name="groupId" type="xs:string" minOccurs="0" />
+			<xs:element name="groupName" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- End Describe SecurityGroups -->
+
+
+	<xs:complexType name="DescribeLoadBalancersType">
+		<xs:sequence>
+			<xs:element name="LoadBalancerNames" type="LoadBalancerNamesType"
+				minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeLoadBalancersResultType">
+		<xs:sequence>
+			<xs:element name="LoadBalancerDescriptions" type="LoadBalancerDescriptionsType"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeLoadBalancersResponseType">
+		<xs:sequence>
+			<xs:element name="DescribeLoadBalancersResult" type="DescribeLoadBalancersResultType" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<xs:complexType name="LoadBalancerDescriptionsType">
+		<xs:sequence>
+			<xs:element name="member" type="LoadBalancerDescriptionType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LoadBalancerDescriptionType">
+		<xs:sequence>
+			<xs:element name="LoadBalancerName" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="DNSName" type="xs:string" minOccurs="0" />
+			<xs:element name="ListenerDescriptions" type="ListenerDescriptionsType"
+				minOccurs="0" />
+			<xs:element name="Policies" type="PoliciesType" minOccurs="0" />
+			<xs:element name="AvailabilityZones" type="AvailabilityZonesType"
+				minOccurs="0" />
+			<xs:element name="InstancesType" type="InstancesType"
+				minOccurs="0" />
+			<xs:element name="HealthCheckType" type="HealthCheckType"
+				minOccurs="0" />
+			<xs:element name="CreatedTime" type="xs:dateTime"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ListenerDescriptionsType">
+		<xs:sequence>
+			<xs:element name="member" type="ListenerDescriptionType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ListenerDescriptionType">
+		<xs:sequence>
+			<xs:element name="Listener" type="ListenerType" minOccurs="0" />
+			<xs:element name="PolicyNames" type="PolicyNamesType"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ListenerType">
+		<xs:sequence>
+			<xs:element name="Protocol" type="xs:string" />
+			<xs:element name="LoadBalancerPort" type="xs:integer" />
+			<xs:element name="InstancePort" type="InstancePortType" />
+			<xs:element name="SSLCertificateId" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="InstancePortType">
+		<xs:restriction base="xs:integer"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="PolicyNamesType">
+		<xs:sequence>
+			<xs:element name="member" type="xs:string" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PoliciesType">
+		<xs:sequence>
+			<xs:element name="AppCookieStickinessPolicies" type="AppCookieStickinessPoliciesType"
+				minOccurs="0" />
+			<xs:element name="LBCookieStickinessPolicies" type="LBCookieStickinessPoliciesType"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AppCookieStickinessPoliciesType">
+		<xs:sequence>
+			<xs:element name="member" type="AppCookieStickinessPolicyType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AppCookieStickinessPolicyType">
+		<xs:sequence>
+			<xs:element name="PolicyName" type="xs:string" minOccurs="0" />
+			<xs:element name="CookieName" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LBCookieStickinessPoliciesType">
+		<xs:sequence>
+			<xs:element name="member" type="LBCookieStickinessPolicyType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LBCookieStickinessPolicyType">
+		<xs:sequence>
+			<xs:element name="PolicyName" type="xs:string" minOccurs="0" />
+			<xs:element name="CookieExpirationPeriod" type="xs:long"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstanceType">
+		<xs:sequence>
+			<xs:element name="InstanceId" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstancesType">
+		<xs:sequence>
+			<xs:element name="member" type="InstanceType" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="HealthCheckType">
+		<xs:sequence>
+			<xs:element name="Target" type="xs:string" />
+			<xs:element name="Interval" type="HealthCheckIntervalType" />
+			<xs:element name="Timeout" type="HealthCheckTimeoutType" />
+			<xs:element name="UnhealthyThreshold" type="UnhealthyThresholdType" />
+			<xs:element name="HealthyThreshold" type="HealthyThresholdType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="HealthCheckIntervalType">
+		<xs:restriction base="xs:integer"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UnhealthyThresholdType">
+		<xs:restriction base="xs:integer"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HealthyThresholdType">
+		<xs:restriction base="xs:integer"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HealthCheckTimeoutType">
+		<xs:restriction base="xs:integer"></xs:restriction>
+	</xs:simpleType>
+
+	<!-- End of Describe Load Balancer -->
+	<!-- Describe Auto Scaling -->
+
+	<xs:complexType name="DescribeLaunchConfigurationsType">
+		<xs:sequence>
+			<xs:element name="LaunchConfigurationNames" type="LaunchConfigurationNamesType"
+				minOccurs="0" />
+			<xs:element name="NextToken" type="XmlString" minOccurs="0" />
+			<xs:element name="MaxRecords" type="MaxRecords" minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeLaunchConfigurationsResponseType">
+		<xs:sequence>
+			<xs:element name="DescribeLaunchConfigurationsResult"
+				type="DescribeLaunchConfigurationsResultType" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="DescribeLaunchConfigurationsResultType">
+		<xs:sequence>
+			<xs:element name="LaunchConfigurations" type="LaunchConfigurationsType" />
+			<xs:element name="NextToken" type="XmlString" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeScalingProcessTypes">
+		<xs:sequence>
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeScalingProcessTypesResponse">
+		<xs:sequence>
+			<xs:element name="DescribeScalingProcessTypesResult" type="DescribeScalingProcessTypesResultType"
+				minOccurs="1" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeScalingProcessTypesResultType">
+		<xs:sequence>
+			<xs:element name="Processes" type="ProcessesType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeAutoScalingGroupsType">
+		<xs:sequence>
+			<xs:element name="AutoScalingGroupNames" type="AutoScalingGroupNamesType"
+				minOccurs="0" />
+			<xs:element name="NextToken" type="XmlString" minOccurs="0" />
+			<xs:element name="MaxRecords" type="MaxRecords" minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeAutoScalingGroupsResponseType">
+		<xs:sequence>
+			<xs:element name="DescribeAutoScalingGroupsResult" type="DescribeAutoScalingGroupsResultType"
+				minOccurs="1" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeAutoScalingGroupsResultType">
+		<xs:sequence>
+			<xs:element name="AutoScalingGroups" type="AutoScalingGroupsType" />
+			<xs:element name="NextToken" type="XmlString" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LaunchConfigurationNamesType">
+		<xs:sequence>
+			<xs:element name="member" type="ResourceName" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AutoScalingGroupsType">
+		<xs:sequence>
+			<xs:element name="member" type="AutoScalingGroupType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AutoScalingGroupType">
+		<xs:sequence>
+			<xs:element name="AutoScalingGroupName" type="XmlStringMaxLen255" />
+			<xs:element name="AutoScalingGroupARN" type="ResourceName"
+				minOccurs="0" />
+			<xs:element name="LaunchConfigurationName" type="XmlStringMaxLen255" />
+			<xs:element name="MinSize" type="xs:integer" />
+			<xs:element name="MaxSize" type="xs:integer" />
+			<xs:element name="DesiredCapacity" type="xs:integer" />
+			<xs:element name="DefaultCooldown" type="xs:integer" />
+			<xs:element name="AvailabilityZones" type="AvailabilityZonesType" />
+			<xs:element name="LoadBalancerNames" type="LoadBalancerNamesType"
+				minOccurs="0" />
+			<xs:element name="HealthCheckType" type="XmlStringMaxLen32" />
+			<xs:element name="HealthCheckGracePeriod" type="xs:integer"
+				minOccurs="0" />
+			<xs:element name="Instances" type="InstancesType"
+				minOccurs="0" />
+			<xs:element name="CreatedTime" type="xs:dateTime" />
+			<xs:element name="SuspendedProcesses" type="SuspendedProcessesType"
+				minOccurs="0" />
+			<xs:element name="PlacementGroup" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="VPCZoneIdentifier" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="EnabledMetrics" type="EnabledMetricsType"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SuspendedProcessesType">
+		<xs:sequence>
+			<xs:element name="member" type="SuspendedProcessType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SuspendedProcessType">
+		<xs:sequence>
+			<xs:element name="ProcessName" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="SuspensionReason" type="XmlStringMaxLen255"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EnabledMetricType">
+		<xs:sequence>
+			<xs:element name="Metric" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="Granularity" type="XmlStringMaxLen255"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MetricGranularityType">
+		<xs:sequence>
+			<xs:element name="Granularity" type="XmlStringMaxLen255"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EnabledMetricsType">
+		<xs:sequence>
+			<xs:element name="member" type="EnabledMetricType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="MaxRecords">
+		<xs:restriction base="xs:integer"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="LaunchConfigurationsType">
+		<xs:sequence>
+			<xs:element name="member" type="LaunchConfigurationType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LaunchConfigurationType">
+		<xs:sequence>
+			<xs:element name="LaunchConfigurationName" type="XmlStringMaxLen255" />
+			<xs:element name="LaunchConfigurationARN" type="ResourceName"
+				minOccurs="0" />
+			<xs:element name="ImageId" type="XmlStringMaxLen255" />
+			<xs:element name="KeyName" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="SecurityGroups" type="SecurityGroups"
+				minOccurs="0" />
+			<xs:element name="UserData" type="XmlStringUserData"
+				minOccurs="0" />
+			<xs:element name="InstanceType" type="XmlStringMaxLen255" />
+			<xs:element name="KernelId" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="RamdiskId" type="XmlStringMaxLen255"
+				minOccurs="0" />
+			<xs:element name="BlockDeviceMappings" type="BlockDeviceMappingsType"
+				minOccurs="0" />
+			<xs:element name="InstanceMonitoring" type="InstanceMonitoringType"
+				minOccurs="0" />
+			<xs:element name="CreatedTime" type="xs:dateTime" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AutoScalingGroupNamesType">
+		<xs:sequence>
+			<xs:element name="member" type="ResourceName" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ProcessesType">
+		<xs:sequence>
+			<xs:element name="member" type="ProcessType" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProcessType">
+		<xs:sequence>
+			<xs:element name="ProcessName" type="XmlStringMaxLen255" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- End of Describe Auto Scaling -->
+
+	<!-- Describe DB Security Groups -->
+
+	<xs:complexType name="DescribeDBSecurityGroupsType">
+		<xs:sequence>
+			<xs:element name="DBSecurityGroupName" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="MaxRecords" type="xs:integer" minOccurs="0" />
+			<xs:element name="Marker" type="xs:string" minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeDBSecurityGroupsResponseType">
+		<xs:sequence>
+			<xs:element name="DescribeDBSecurityGroupsResult" type="DescribeDBSecurityGroupsResultType"
+				minOccurs="1" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeDBSecurityGroupsResultType">
+		<xs:sequence>
+			<xs:element name="Marker" type="xs:string" minOccurs="0" />
+			<xs:element name="DBSecurityGroups" type="DBSecurityGroups"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBSecurityGroups">
+		<xs:sequence>
+			<xs:element name="DBSecurityGroup" type="DBSecurityGroup"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBSecurityGroupNameList">
+		<xs:sequence>
+			<xs:element name="DBSecurityGroupName" type="xs:string"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBSecurityGroup">
+		<xs:sequence>
+			<xs:element name="OwnerId" type="xs:string" minOccurs="0" />
+			<xs:element name="DBSecurityGroupName" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="DBSecurityGroupDescription" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="EC2SecurityGroups" type="EC2SecurityGroupList"
+				minOccurs="0" />
+			<xs:element name="IPRanges" type="IPRangeList" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EC2SecurityGroupList">
+		<xs:sequence>
+			<xs:element name="EC2SecurityGroup" type="EC2SecurityGroup"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EC2SecurityGroup">
+		<xs:sequence>
+			<xs:element name="Status" type="xs:string" minOccurs="0" />
+			<xs:element name="EC2SecurityGroupName" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="EC2SecurityGroupOwnerId" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="IPRangeList">
+		<xs:sequence>
+			<xs:element name="IPRange" type="IPRange" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IPRange">
+		<xs:sequence>
+			<xs:element name="Status" type="xs:string" minOccurs="0" />
+			<xs:element name="CIDRIP" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<!--  End of Describe DB Security Groups -->
+
+	<!-- Describe DB Instances -->
+
+
+	<xs:complexType name="DescribeDBInstancesType">
+		<xs:sequence>
+			<xs:element name="DBInstanceIdentifier" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="MaxRecords" type="xs:integer" minOccurs="0" />
+			<xs:element name="Marker" type="xs:string" minOccurs="0" />
+			<xs:element name="Region" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DescribeDBInstancesResponseType">
+		<xs:sequence>
+			<xs:element name="DescribeDBInstancesResult" type="DescribeDBInstancesResultType"
+				minOccurs="1" />
+			<xs:element name="ResponseMetadata" type="ResponseMetadataType" />
+			<xs:element name="Region" type="xs:string" />
+			<xs:element name="Status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DescribeDBInstancesResultType">
+		<xs:sequence>
+			<xs:element name="Marker" type="xs:string" minOccurs="0" />
+			<xs:element name="DBInstances" type="DBInstanceListType"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBInstanceListType">
+		<xs:sequence>
+			<xs:element name="DBInstance" type="DBInstanceType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<!-- End of Descrie DB Instances -->
+
+	<xs:complexType name="Resources">
+		<xs:sequence>
+			<xs:element name="CreateSecurityGroup" type="CreateSecurityGroupType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="AddSecurityGroupRule" type="AddSecurityGroupRuleType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="CreateKeyPair" type="CreateKeyPairType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="Ec2Instance" type="Ec2InstanceType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="LoadBalancer" type="LoadBalancerType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="CreateAppCookieStickinessPolicy" type="CreateAppCookieStickinessPolicyType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="CreateLBCookieStickinessPolicy" type="CreateLBCookieStickinessPolicyType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="CreateLaunchConfiguration" type="CreateLaunchConfigurationType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="CreateAutoScalingGroup" type="CreateAutoScalingGroupType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="PutScalingPolicy" type="PutScalingPolicyType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="LaunchRDSInstance" type="CreateDBInstanceType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="PutMetricAlarm" type="PutMetricAlarmType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="CreateDBSecurityGroup" type="CreateDBSecurityGroupType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="AuthorizeDBSecurityGroupIngress" type="AuthorizeDBSecurityGroupIngressType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="CreateDBInstanceReadReplica" type="CreateDBInstanceReadReplicaType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="CreateDBSnapshot" type="CreateDBSnapshotType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="GetMetricStatistics" type="GetMetricStatisticsType"
+				maxOccurs="unbounded" minOccurs="0" />
+
+			<xs:element name="UpdateAutoScalingGroupRequest" type="UpdateAutoScalingGroupType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteAutoScalingGroupRequest" type="DeleteAutoScalingGroupType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteLaunchConfigurationRequest" type="DeleteLaunchConfigurationType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteLoadBalancerRequest" type="DeleteLoadBalancerType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="TerminateInstancesRequest" type="TerminateInstancesType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteDBInstanceRequest" type="DeleteDBInstanceType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteKeyPairRequest" type="DeleteKeyPairType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteSecurityGroupRule" type="DeleteSecurityGroupRuleType"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element name="DeleteSecurityGroupRequest" type="DeleteSecurityGroupType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteDBSecurityGroupRequest" type="DeleteDBSecurityGroupType"
+				minOccurs="0" maxOccurs="unbounded" />
+
+			<xs:element name="SuspendProcesses" type="SuspendProcessesType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="StopInstances" type="StopInstancesType"
+				minOccurs="0" maxOccurs="unbounded" />
+			
+
+			<xs:element name="StartInstances" type="StartInstancesType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="ResumeProcesses" type="ResumeProcessesType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="RestoreDBInstanceFromDBSnapshot" type="RestoreDBInstanceFromDBSnapshotType"
+				minOccurs="0" maxOccurs="unbounded" />
+
+			<xs:element name="DescribeKeyPairs" type="DescribeKeyPairsType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeSecurityGroups" type="DescribeSecurityGroupsType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeInstances" type="DescribeInstancesType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeLoadBalancers" type="DescribeLoadBalancersType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeLaunchConfigurations" type="DescribeLaunchConfigurationsType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeScalingProcess" type="DescribeScalingProcessTypes"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeAutoScalingGroups" type="DescribeAutoScalingGroupsType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeDBSecurityGroups" type="DescribeDBSecurityGroupsType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeDBInstances" type="DescribeDBInstancesType"
+				minOccurs="0" maxOccurs="unbounded" />
+
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Outputs">
+		<xs:sequence>
+			<xs:element type="Ec2InstanceResponse" name="InstanceDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="CreateKeyPairResponse" name="CreateKeyPairDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="LoadBalancerResponse" name="LoadBalancerDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="CreateAppCookieStickinessPolicyResponse"
+				name="CreateAppCookieStickinessPolicyDetails" maxOccurs="unbounded"
+				minOccurs="0" />
+			<xs:element type="CreateLBCookieStickinessPolicyResponse"
+				name="CreateLBCookieStickinessPolicyDetails" maxOccurs="unbounded"
+				minOccurs="0" />
+			<xs:element type="CreateLaunchConfigurationResponse"
+				name="CreateLaunchConfigurationDetails" maxOccurs="unbounded"
+				minOccurs="0" />
+			<xs:element type="CreateAutoScalingGroupResponse"
+				name="CreateAutoScalingGroupDetails" maxOccurs="unbounded"
+				minOccurs="0" />
+			<xs:element type="AddSecurityGroupRuleResponse" name="AddSecurityGroupRuleDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="DeleteSecurityGroupRuleDetailsType"
+				name="DeleteSecurityGroupRuleDetails" maxOccurs="unbounded"
+				minOccurs="0" />
+			<xs:element type="CreateSecurityGroupResponse" name="CreateSecurityGroupDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="AuthorizeDBSecurityGroupIngressResponse"
+				name="AuthorizeDBSecurityGroupIngressDetails" maxOccurs="unbounded"
+				minOccurs="0" />
+			<xs:element type="CreateDBSecurityGroupResponse" name="CreateDBSecurityGroupDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="CreateDBInstanceResponse" name="LaunchRDSInstanceDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="CreateDBInstanceReadReplicaResponse"
+				name="CreateDBInstanceReadReplicaDetails" maxOccurs="unbounded"
+				minOccurs="0" />
+			<xs:element type="CreateDBSnapshotDetailsType" name="CreateDBSnapshotDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="PutScalingPolicyResponse" name="PutScalingPolicyDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="PutMetricAlarmDetailsType" name="PutMetricAlarmDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+			<xs:element type="GetMetricStatisticsDetailsType" name="GetMetricStatisticsDetails"
+				maxOccurs="unbounded" minOccurs="0" />
+
+			<xs:element name="UpdateAutoScalingGroupResponse" type="UpdateAutoScalingGroupResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteAutoScalingGroupResponse" type="DeleteAutoScalingGroupResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteLaunchConfigurationResponse" type="DeleteLaunchConfigurationResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteLoadBalancerResponse" type="DeleteLoadBalancerResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="TerminateInstancesResponse" type="TerminateInstancesResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteDBInstanceResponse" type="DeleteDBInstanceResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteKeyPairResponse" type="DeleteKeyPairResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteSecurityGroupResponse" type="DeleteSecurityGroupResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DeleteDBSecurityGroupResponse" type="DeleteDBSecurityGroupResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+
+			<xs:element name="StopInstancesResponse" type="StopInstancesResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="SuspendProcessesResponse" type="SuspendProcessesResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+
+			<xs:element name="StartInstancesResponse" type="StartInstancesResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="ResumeProcessesResponse" type="ResumeProcessesResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="RestoreDBInstanceFromDBSnapshotResponse"
+				type="RestoreDBInstanceFromDBSnapshotResponseType" minOccurs="0"
+				maxOccurs="unbounded" />
+
+			<xs:element name="DescribeInstancesResponse" type="DescribeInstancesResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeKeyPairsResponse" type="DescribeKeyPairsResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeSecurityGroupsResponse" type="DescribeSecurityGroupsResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeInstances" type="DescribeInstancesResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeLoadBalancersResponse" type="DescribeLoadBalancersResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeLaunchConfigurationsResponse"
+				type="DescribeLaunchConfigurationsResponseType" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="DescribeScalingProcessResponse" type="DescribeScalingProcessTypesResponse"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeAutoScalingGroupsResponse" type="DescribeAutoScalingGroupsResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeDBSecurityGroupsResponse" type="DescribeDBSecurityGroupsResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="DescribeDBInstancesResponse" type="DescribeDBInstancesResponseType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Automata">
+		<xs:sequence>
+			<xs:element type="xs:string" name="AutomataName" />
+			<xs:element type="xs:string" name="Description" />
+			<xs:element type="xs:string" name="Action" />
+			<xs:element type="Resources" name="Resources" />
+			<xs:element type="Outputs" name="Outputs" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:complexType name="DeleteSecurityGroupRuleType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="SecurityGroupName" />
+			<xs:element type="xs:int" name="FromPort" />
+			<xs:element type="xs:int" name="ToPort" />
+			<xs:element type="xs:string" name="Protocol" />
+			<xs:element type="xs:string" name="CidrIP" />
+			<xs:element type="xs:string" name="Region" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DeleteSecurityGroupRuleDetailsType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="SecurityGroupName" />
+			<xs:element type="xs:int" name="FromPort" />
+			<xs:element type="xs:int" name="ToPort" />
+			<xs:element type="xs:string" name="Protocol" />
+			<xs:element type="xs:string" name="CidrIP" />
+			<xs:element type="xs:string" name="Region" />
+			<xs:element type="xs:string" name="Status" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
