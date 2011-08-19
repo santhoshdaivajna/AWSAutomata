@@ -13,5 +13,5 @@ This library provides a set of classes that ultimately call the core Amazon Web 
  
 == License
  
-Automata uses the Apache 2 license.  See LICENSE for details.
+AWSAutomata uses the Apache 2 license.  See LICENSE for details.
 
