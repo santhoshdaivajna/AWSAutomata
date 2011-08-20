@@ -14,136 +14,136 @@
 		components
 	-->
 
-	<bean id="CreateAutomataController"
+	<bean id="createAutomataController"
 		class="com.automata.cloudcore.controller.CreateAutomataController">
 		<property name="controllerList">
 			<list>
-				<value>CreateSecurityGroupController</value>
-				<value>AddSecurityGroupRuleController</value>
-				<value>CreateKeyPairController</value>
-				<value>EC2Controller</value>
-				<value>ELBController</value>
-				<value>CreateAppCookieStickinessPolicyController</value>
-				<value>CreateLBCookieStickinessPolicyController</value>
-				<value>LaunchConfigurationController</value>
-				<value>AutoScalingController</value>
-				<value>PutScalingPolicyController</value>
-				<value>PutMetricAlarmController</value>
-				<value>CreateDBSecurityGroupController</value>
-				<value>AuthorizeDBSecurityGroupController</value>
-				<value>RDSController</value>
-				<value>DescribeEC2Controller</value>
-				<value>DescribeRDSController</value> 
-				<value>CreateDBInstanceReadReplicaController</value> 
-				<value>RegisterInstancesWithELBController</value>
+				<value>createSecurityGroupController</value>
+				<value>addSecurityGroupRuleController</value>
+				<value>createKeyPairController</value>
+				<value>ec2Controller</value>
+				<value>elbController</value>
+				<value>createAppCookieStickinessPolicyController</value>
+				<value>createLBCookieStickinessPolicyController</value>
+				<value>launchConfigurationController</value>
+				<value>autoScalingController</value>
+				<value>putScalingPolicyController</value>
+				<value>putMetricAlarmController</value>
+				<value>createDBSecurityGroupController</value>
+				<value>authorizeDBSecurityGroupController</value>
+				<value>rdsController</value>
+				<value>describeEC2Controller</value>
+				<value>describeRDSController</value> 
+				<value>createDBInstanceReadReplicaController</value> 
+				<value>registerInstancesWithELBController</value>
 			</list>
 		</property> 
 	</bean>
 	
-	<bean id="StopAutomataController"
+	<bean id="stopAutomataController"
 		class="com.automata.cloudcore.controller.StopAutomataController">
 		<property name="controllerList">
 			<list>
-				<value>StopInstancesController</value>
-				<value>DeleteDBInstanceController</value>
-				<value>UpdateAutoScalingGroupController</value>
+				<value>stopInstancesController</value>
+				<value>deleteDBInstanceController</value>
+				<value>updateAutoScalingGroupController</value>
 			 </list>
 		</property>
 	</bean>
 	
-	<bean id="ResumeAutomataController"
+	<bean id="resumeAutomataController"
 		class="com.automata.cloudcore.controller.ResumeAutomataController">
 		<property name="controllerList">
 			<list>
-				<value>StartInstancesController</value>
-				<value>UpdateAutoScalingGroupController</value>
-				<value>RestoreDBInstanceFromDBSnapshotController</value>
-				<value>DescribeRestoreDBInstanceController</value>
-				<value>CreateDBInstanceReadReplicaController</value>
+				<value>startInstancesController</value>
+				<value>updateAutoScalingGroupController</value>
+				<value>restoreDBInstanceFromDBSnapshotController</value>
+				<value>describeRestoreDBInstanceController</value>
+				<value>createDBInstanceReadReplicaController</value>
 			 </list>
 		</property>
 	</bean>
 	
-	<bean id="TerminateAutomataController"
+	<bean id="terminateAutomataController"
 		class="com.automata.cloudcore.controller.TerminateAutomataController">
 		<property name="controllerList">
 		<list>
-			<value>UpdateAutoScalingGroupController</value>
-			<value>DeleteLoadBalancerController</value>
-			<value>TerminateInstancesController</value>
-			<value>DeleteDBInstanceController</value>
-			<value>DeleteKeyPairController</value>
-			<value>DeleteSecurityGroupController</value>
-			<value>DeleteDBSecurityGroupController</value>
-			<value>DeleteAutoScalingGroupController</value>
-			<value>DeleteLaunchConfigurationController</value>
+			<value>updateAutoScalingGroupController</value>
+			<value>deleteLoadBalancerController</value>
+			<value>terminateInstancesController</value>
+			<value>deleteDBInstanceController</value>
+			<value>deleteKeyPairController</value>
+			<value>deleteSecurityGroupController</value>
+			<value>deleteDBSecurityGroupController</value>
+			<value>deleteAutoScalingGroupController</value>
+			<value>deleteLaunchConfigurationController</value>
 		</list>
 		</property>
 	</bean>
 	
-	<bean id="DescribeAutomataController"
+	<bean id="describeAutomataController"
 		class="com.automata.cloudcore.controller.DescribeAutomataController">
 		<property name="controllerList">
 		<list>
-			<value>DescribeKeyPairController</value>
-			<value>DescribeSecurityGroupsController</value>
-			<value>DescribeInstancesController</value>
-			<value>DescribeLoadBalancersController</value>
-			<value>DescribeLaunchConfigurationsController</value>
-			<value>DescribeAutoScalingGroupsController</value>
-			<value>DescribeDBSecurityGroupsController</value>
-			<value>DescribeDBInstancesController</value>	
+			<value>describeKeyPairController</value>
+			<value>describeSecurityGroupsController</value>
+			<value>describeInstancesController</value>
+			<value>describeLoadBalancersController</value>
+			<value>describeLaunchConfigurationsController</value>
+			<value>describeAutoScalingGroupsController</value>
+			<value>describeDBSecurityGroupsController</value>
+			<value>describeDBInstancesController</value>	
 		</list>
 		</property>
 	</bean>
 
 	
 	
-<bean id="CreateSecurityGroupController" class="com.automata.cloudcore.controller.CreateSecurityGroupController" />
-<bean id="AddSecurityGroupRuleController" class="com.automata.cloudcore.controller.AddSecurityGroupRuleController" />
-<bean id="CreateKeyPairController" class="com.automata.cloudcore.controller.CreateKeyPairController" />
-<bean id="EC2Controller" class="com.automata.cloudcore.controller.EC2Controller" />
-<bean id="ELBController" class="com.automata.cloudcore.controller.ELBController" />
-<bean id="CreateAppCookieStickinessPolicyController" class="com.automata.cloudcore.controller.CreateAppCookieStickinessPolicyController" />
-<bean id="CreateLBCookieStickinessPolicyController" class="com.automata.cloudcore.controller.CreateLBCookieStickinessPolicyController" />
-<bean id="RegisterInstancesWithELBController" class="com.automata.cloudcore.controller.RegisterInstancesWithELBController" />
-<bean id="LaunchConfigurationController" class="com.automata.cloudcore.controller.LaunchConfigurationController" />
-<bean id="AutoScalingController" class="com.automata.cloudcore.controller.AutoScalingController" />
-<bean id="PutScalingPolicyController" class="com.automata.cloudcore.controller.PutScalingPolicyController" />
-<bean id="PutMetricAlarmController" class="com.automata.cloudcore.controller.PutMetricAlarmController" />
-<bean id="CreateDBSecurityGroupController" class="com.automata.cloudcore.controller.CreateDBSecurityGroupController" />
-<bean id="AuthorizeDBSecurityGroupController" class="com.automata.cloudcore.controller.AuthorizeDBSecurityGroupController" />
-<bean id="RDSController" class="com.automata.cloudcore.controller.RDSController" />
-<bean id="DescribeEC2Controller" class="com.automata.cloudcore.controller.DescribeEC2Controller"/>
-<bean id="DescribeRDSController" class="com.automata.cloudcore.controller.DescribeRDSController"/>
-<bean id="CreateDBInstanceReadReplicaController" class="com.automata.cloudcore.controller.CreateDBInstanceReadReplicaController" />
+<bean id="createSecurityGroupController" class="com.automata.cloudcore.controller.CreateSecurityGroupController" />
+<bean id="addSecurityGroupRuleController" class="com.automata.cloudcore.controller.AddSecurityGroupRuleController" />
+<bean id="createKeyPairController" class="com.automata.cloudcore.controller.CreateKeyPairController" />
+<bean id="ec2Controller" class="com.automata.cloudcore.controller.EC2Controller" />
+<bean id="elbController" class="com.automata.cloudcore.controller.ELBController" />
+<bean id="createAppCookieStickinessPolicyController" class="com.automata.cloudcore.controller.CreateAppCookieStickinessPolicyController" />
+<bean id="createLBCookieStickinessPolicyController" class="com.automata.cloudcore.controller.CreateLBCookieStickinessPolicyController" />
+<bean id="registerInstancesWithELBController" class="com.automata.cloudcore.controller.RegisterInstancesWithELBController" />
+<bean id="launchConfigurationController" class="com.automata.cloudcore.controller.LaunchConfigurationController" />
+<bean id="autoScalingController" class="com.automata.cloudcore.controller.AutoScalingController" />
+<bean id="putScalingPolicyController" class="com.automata.cloudcore.controller.PutScalingPolicyController" />
+<bean id="putMetricAlarmController" class="com.automata.cloudcore.controller.PutMetricAlarmController" />
+<bean id="createDBSecurityGroupController" class="com.automata.cloudcore.controller.CreateDBSecurityGroupController" />
+<bean id="authorizeDBSecurityGroupController" class="com.automata.cloudcore.controller.AuthorizeDBSecurityGroupController" />
+<bean id="rdsController" class="com.automata.cloudcore.controller.RDSController" />
+<bean id="describeEC2Controller" class="com.automata.cloudcore.controller.DescribeEC2Controller"/>
+<bean id="describeRDSController" class="com.automata.cloudcore.controller.DescribeRDSController"/>
+<bean id="createDBInstanceReadReplicaController" class="com.automata.cloudcore.controller.CreateDBInstanceReadReplicaController" />
 
-<bean id="SuspendProcessesController" class="com.automata.cloudcore.controller.SuspendProcessesController" />
-<bean id="StopInstancesController" class="com.automata.cloudcore.controller.StopInstancesController"></bean>
-<bean id="DeleteDBInstanceController" class="com.automata.cloudcore.controller.DeleteDBInstanceController"></bean>
-<bean id="UpdateAutoScalingGroupController" class="com.automata.cloudcore.controller.UpdateAutoScalingGroupController"></bean>
+<bean id="suspendProcessesController" class="com.automata.cloudcore.controller.SuspendProcessesController" />
+<bean id="stopInstancesController" class="com.automata.cloudcore.controller.StopInstancesController"></bean>
+<bean id="deleteDBInstanceController" class="com.automata.cloudcore.controller.DeleteDBInstanceController"></bean>
+<bean id="updateAutoScalingGroupController" class="com.automata.cloudcore.controller.UpdateAutoScalingGroupController"></bean>
 
-<bean id="StartInstancesController" class="com.automata.cloudcore.controller.StartInstancesController" />
-<bean id="RestoreDBInstanceFromDBSnapshotController" class="com.automata.cloudcore.controller.RestoreDBInstanceFromDBSnapshotController" />
-<bean id="DescribeRestoreDBInstanceController" class="com.automata.cloudcore.controller.DescribeRestoreDBInstanceController" />
+<bean id="startInstancesController" class="com.automata.cloudcore.controller.StartInstancesController" />
+<bean id="restoreDBInstanceFromDBSnapshotController" class="com.automata.cloudcore.controller.RestoreDBInstanceFromDBSnapshotController" />
+<bean id="describeRestoreDBInstanceController" class="com.automata.cloudcore.controller.DescribeRestoreDBInstanceController" />
 
-<bean id="DeleteAutoScalingGroupController" class="com.automata.cloudcore.controller.DeleteAutoScalingGroupController" />
-<bean id="DeleteLaunchConfigurationController" class="com.automata.cloudcore.controller.DeleteLaunchConfigurationController" />
-<bean id="DeleteLoadBalancerController" class="com.automata.cloudcore.controller.DeleteLoadBalancerController" />
-<bean id="TerminateInstancesController" class="com.automata.cloudcore.controller.TerminateInstancesController" />
-<bean id="DeleteKeyPairController" class="com.automata.cloudcore.controller.DeleteKeyPairController" />
-<bean id="DeleteDBSecurityGroupController" class="com.automata.cloudcore.controller.DeleteDBSecurityGroupController" />
-<bean id="DeleteSecurityGroupRuleController" class="com.automata.cloudcore.controller.DeleteSecurityGroupRuleController" />
-<bean id="DeleteSecurityGroupController" class="com.automata.cloudcore.controller.DeleteSecurityGroupController" />
+<bean id="deleteAutoScalingGroupController" class="com.automata.cloudcore.controller.DeleteAutoScalingGroupController" />
+<bean id="deleteLaunchConfigurationController" class="com.automata.cloudcore.controller.DeleteLaunchConfigurationController" />
+<bean id="deleteLoadBalancerController" class="com.automata.cloudcore.controller.DeleteLoadBalancerController" />
+<bean id="terminateInstancesController" class="com.automata.cloudcore.controller.TerminateInstancesController" />
+<bean id="deleteKeyPairController" class="com.automata.cloudcore.controller.DeleteKeyPairController" />
+<bean id="deleteDBSecurityGroupController" class="com.automata.cloudcore.controller.DeleteDBSecurityGroupController" />
+<bean id="deleteSecurityGroupRuleController" class="com.automata.cloudcore.controller.DeleteSecurityGroupRuleController" />
+<bean id="deleteSecurityGroupController" class="com.automata.cloudcore.controller.DeleteSecurityGroupController" />
 
-<bean id="DescribeKeyPairController" class="com.automata.cloudcore.controller.DescribeKeyPairController" />
-<bean id="DescribeSecurityGroupsController" class="com.automata.cloudcore.controller.DescribeSecurityGroupsController" />
-<bean id="DescribeInstancesController" class="com.automata.cloudcore.controller.DescribeInstancesController" />
-<bean id="DescribeLoadBalancersController" class="com.automata.cloudcore.controller.DescribeLoadBalancersController" />
-<bean id="DescribeLaunchConfigurationsController" class="com.automata.cloudcore.controller.DescribeLaunchConfigurationsController" />	
-<bean id="DescribeAutoScalingGroupsController" class="com.automata.cloudcore.controller.DescribeAutoScalingGroupsController" />	
-<bean id="DescribeDBSecurityGroupsController" class="com.automata.cloudcore.controller.DescribeDBSecurityGroupsController" />
-<bean id="DescribeDBInstancesController" class="com.automata.cloudcore.controller.DescribeDBInstancesController" />
+<bean id="describeKeyPairController" class="com.automata.cloudcore.controller.DescribeKeyPairController" />
+<bean id="describeSecurityGroupsController" class="com.automata.cloudcore.controller.DescribeSecurityGroupsController" />
+<bean id="describeInstancesController" class="com.automata.cloudcore.controller.DescribeInstancesController" />
+<bean id="describeLoadBalancersController" class="com.automata.cloudcore.controller.DescribeLoadBalancersController" />
+<bean id="describeLaunchConfigurationsController" class="com.automata.cloudcore.controller.DescribeLaunchConfigurationsController" />	
+<bean id="describeAutoScalingGroupsController" class="com.automata.cloudcore.controller.DescribeAutoScalingGroupsController" />	
+<bean id="describeDBSecurityGroupsController" class="com.automata.cloudcore.controller.DescribeDBSecurityGroupsController" />
+<bean id="describeDBInstancesController" class="com.automata.cloudcore.controller.DescribeDBInstancesController" />
 
 
 	<!--<bean id="com.automata.cloudcore.controller.SQSProcessMessageController" class="com.automata.cloudcore.controller.SQSProcessMessageController">
