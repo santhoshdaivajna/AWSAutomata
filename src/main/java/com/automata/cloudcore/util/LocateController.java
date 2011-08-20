@@ -11,15 +11,15 @@ public class LocateController {
 		IController controller = null;
 		String controllerName = "";
 		if (action.equalsIgnoreCase(Constants.CREATE)){
-			controllerName = "CreateAutomataController";
+			controllerName = "createAutomataController";
 		} else if (action.equalsIgnoreCase(Constants.STOP)) {
-			controllerName = "StopAutomataController";
+			controllerName = "stopAutomataController";
 		} else if (action.equalsIgnoreCase(Constants.RESUME)){
-			controllerName = "ResumeAutomataController";
+			controllerName = "resumeAutomataController";
 		} else if (action.equalsIgnoreCase(Constants.TERMINATE)) {
-			controllerName = "TerminateAutomataController";
+			controllerName = "terminateAutomataController";
 		} else if (action.equalsIgnoreCase(Constants.DESCRIBE)) {
-			controllerName = "DescribeAutomataController";
+			controllerName = "describeAutomataController";
 		}
 		controller = (IController) BeanLocatorUtil.locate(controllerName);
 		return controller;
